@@ -1,0 +1,15 @@
+item {
+	id: 1
+	name: 'paracetamol'
+}
+
+item {
+	id: 2
+	name: 'analgesic'
+}
+
+item {
+	id: 3
+	name: 'rosuvastatin'
+}
+

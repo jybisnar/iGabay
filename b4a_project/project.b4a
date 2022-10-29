@@ -1,0 +1,162 @@
+﻿Build1=Default,b4a.RiDD
+File1=detailsdialog.bal
+File2=form.png
+File3=joey1.png
+File4=joey2.png
+File5=joey3.png
+File6=joey4.png
+File7=Layout1.bal
+File8=plus.png
+File9=RIDD PAGING.jpg
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=core
+Library10=httputils2
+Library11=json
+Library12=reflection
+Library13=byteconverter
+Library14=bitmapcreator
+Library15=ime
+Library16=viewsex
+Library17=dialogs
+Library2=stringutils
+Library3=phone
+Library4=serial
+Library5=randomaccessfile
+Library6=network
+Library7=gps
+Library8=xui
+Library9=runtimepermissions
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~SetApplicationAttribute(android:theme, "@style/LightTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#ff039be5</color>~\n~	<color name="statusbar">#ff006db3</color>~\n~	<color name="textColorPrimary">#ffffffff</color>~\n~	<color name="navigationBar">#ff006db3</color>~\n~</resources>~\n~)~\n~CreateResource(values-v20, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Material.Light">~\n~		 <item name="android:colorPrimary">@color/actionbar</item>~\n~		 <item name="android:colorPrimaryDark">@color/statusbar</item>~\n~		 <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~		 <item name="android:navigationBarColor">@color/navigationBar</item>~\n~    </style>~\n~</resources>~\n~)~\n~CreateResource(values-v14, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Holo.Light">~\n~		<item name="android:actionBarStyle">@style/CustomActionBarStyle</item>~\n~    </style>~\n~	<style name="CustomActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">~\n~	    <item name="android:background">@color/actionbar</item>~\n~	</style>~\n~</resources>~\n~)~\n~~\n~
+Module1=AddUser
+Module10=vb6
+Module11=WTAServer
+Module2=clsParser
+Module3=joeBytes
+Module4=ManageUsers
+Module5=QRGenerator
+Module6=RiDDMain
+Module7=riddQR
+Module8=Starter
+Module9=Table
+NumberOfFiles=9
+NumberOfLibraries=17
+NumberOfModules=11
+Version=9.801
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: RiDD
+	#VersionCode: 2
+	#VersionName: RiDD BETA
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: False
+#End Region
+#Region  Activity Attributes 
+	#FullScreen: True
+	#IncludeTitle: False
+	
+#End Region
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	'Private xui As XUI
+	Dim FadeTimer As Timer
+	
+End Sub
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	Private RiDDMain1 As RiDDMain
+	Private ManageUsers1 As ManageUsers
+	Private AddUser1 As AddUser
+	Private riddQR1 As riddQR
+	Dim ImageView1 As ImageView
+	Dim intFadeCount1 As Int
+	Dim obj1 As Reflector
+	
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	If FirstTime=True Then
+		Activity.LoadLayout("Layout1")
+		'Activity.Title=""
+		'ImageView1.Left = (Activity.Width - 200dip)/2
+		'ImageView1.Top = (Activity.Height - 200dip)/2
+		obj1.Target = ImageView1.Background
+		obj1.RunMethod2("setAlpha", 0, "java.lang.int")
+		ImageView1.SetLayout(0,0,100%x,100%y)
+		ImageView1.Visible=True
+		FadeTimer.Initialize("TimerSplash1", 50)
+		FadeTimer.Enabled = True
+		intFadeCount1 = 0
+		RiDDMain1.SetLayout(0,0,100%x,100%y)        '1
+		RiDDMain1.Visible=False
+		ManageUsers1.SetLayout(0,0,100%x,100%y)        '1
+		ManageUsers1.Visible=False
+		riddQR1.SetLayout(0,0,100%x,100%y)        '1
+		riddQR1.Visible=False
+		AddUser1.SetLayout(0,0,100%x,100%y)        '1
+		AddUser1.Visible=False
+	End If
+End Sub
+Sub refresh_click()
+	'frmsplash1.Visible=False
+	'frmcontrols1.Visible=True
+End Sub
+Sub done_click()
+	'frmsplash1.Visible=True
+	'frmcontrols1.Visible=False
+End Sub
+Sub Activity_Resume
+	Starter.RiDDMain1=RiDDMain1
+	Starter.ManageUsers1=ManageUsers1
+	Starter.AddUser1=AddUser1
+	Starter.ImageView1=ImageView1
+	Starter.riddQR1=riddQR1
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	'ToastMessageShow("pause : " & UserClosed,False)
+	If UserClosed=True Then
+		ExitApplication
+	End If
+End Sub
+
+Sub TimerSplash1_Tick
+	intFadeCount1 = intFadeCount1 + 3
+	obj1.RunMethod2("setAlpha", Min(intFadeCount1, 255), "java.lang.int")
+	'the difference between 314 and 254 is for a delay before lauch NewActivity
+	If intFadeCount1 > 300 Then TimerSplash_End
+End Sub
+
+Sub TimerSplash_End
+	FadeTimer.Enabled = False
+	ImageView1.Visible = False
+	RiDDMain1.SetLayout(0,0,100%x,100%y)        '1
+	RiDDMain1.Visible=True
+	
+'	Starter.waiting=True
+'	Starter.wsh.Querry("select * from aquasched","QUERRYTABLE")
+'	'Dim a() As Object=Array(Array As String("1","2"),Array As String("4","5"))
+'	'tblSched.SetDatagrid(Array As String ("A","B"),a)
+'	Do While Starter.waiting=True
+'		Sleep(0)
+'	Loop
+'	
+'	Starter.waiting=True
+'	Starter.wsh.Querry("select * from aquaparam","QUERRYPARAM")
+'	'Dim a() As Object=Array(Array As String("1","2"),Array As String("4","5"))
+'	'tblSched.SetDatagrid(Array As String ("A","B"),a)
+'	Do While Starter.waiting=True
+'		Sleep(0)
+'	Loop
+End Sub
+
