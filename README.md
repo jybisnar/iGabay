@@ -1,8 +1,6 @@
 # iGabay: Your Personal Healthcare Guide
 
-[![Python](https://www.python.org/static/community_logos/python-powered-w-100x40.png)](https://www.python.org/)
-
-[![B4X](https://www.b4x.com/android/forum/)](https://www.b4x.com/)
+[![Python](https://www.python.org/static/community_logos/python-powered-w-100x40.png)](https://www.python.org/) [![B4X](b4a_project/b4a.png)](https://www.b4x.com/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
